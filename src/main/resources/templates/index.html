@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Spring Cloud AWS</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1>Hello, S3.</h1>
+    <div>
+        <form>
+            <div>
+                <label for="img">File upload</label>
+                <input type="file" id="img">
+            </div>
+            <button type="button" id="btn-save">Save</button>
+        </form>
+    </div>
+    <div>
+        <p><strong>Result Image</strong></p>
+        <img src="" id="result-image">
+    </div>
+
+<script>
+    $('#btn-save').on('click', uploadImage);
+
+    function uploadImage() {
+        let file = $('#img')[0].files[0];
+        let formData = new FormData();
+        formData.append('data', file);
+
+        $.ajax({
+            type: 'POST',
+            url: '/upload',
+            data: formData,
+            processData: false,
+            contentType: false
+        }).done(function (data) {
+            $('#result-image').attr('src', data);
+        }).fail(function (error) {
+            alert(error);
+        });
+    }
+</script>
+</body>
+</html>
