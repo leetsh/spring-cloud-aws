@@ -9,3 +9,5 @@
 ### Ref
 ***
 - https://aws.amazon.com/ko/blogs/korea/getting-started-with-spring-boot-on-aws/
+- https://jojoldu.tistory.com/300
+
